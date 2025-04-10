@@ -1,95 +1,158 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Happy Birthday My Love</title>
-    <link rel="stylesheet" href="./file/default.css" type="text/css" />
-    <script type="text/javascript" src="./file/jquery.min.js"></script>
-    <script type="text/javascript" src="./file/jscex.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-parser.js"></script>
-    <script type="text/javascript" src="./file/jscex-jit.js"></script>
-    <script type="text/javascript" src="./file/jscex-builderbase.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-async.min.js"></script>
-    <script type="text/javascript" src="./file/jscex-async-powerpack.min.js"></script>
-    <script type="text/javascript" src="./file/functions.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./file/love.js" charset="utf-8"></script>
-    <style>
-        body {
-            margin: 0;
-            background-color: #fff0f5;
-            overflow-x: hidden;
-        }
-        #main {
-            width: 100%;
-            max-width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        canvas {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-        #wrap {
-            text-align: center;
-        }
-        #code {
-            display: none;
-            font-size: 18px;
-            color: #d6336c;
-            margin-top: 20px;
-        }
-        .say {
-            display: block;
-            margin: 8px 0;
-        }
-        #clock-box {
-            font-size: 16px;
-            color: #444;
-            margin-top: 10px;
-        }
-        #error {
-            display: none;
-            text-align: center;
-            background-color: #fdd;
-            padding: 10px;
-            font-weight: bold;
-        }
-    </style>
-    <script>
-        function playAudio() {
-            var audio = document.getElementById("myAudio");
-            audio.play();
-        }
-    </script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday My Love</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./file/default.css" type="text/css" />
+
+  <!-- Scripts -->
+  <script src="./file/jquery.min.js" type="text/javascript"></script>
+  <script src="./file/jscex.min.js" type="text/javascript"></script>
+  <script src="./file/jscex-parser.js" type="text/javascript"></script>
+  <script src="./file/jscex-jit.js" type="text/javascript"></script>
+  <script src="./file/jscex-builderbase.min.js" type="text/javascript"></script>
+  <script src="./file/jscex-async.min.js" type="text/javascript"></script>
+  <script src="./file/jscex-async-powerpack.min.js" type="text/javascript"></script>
+  <script src="./file/functions.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./file/love.js" type="text/javascript" charset="utf-8"></script>
+
+  <style type="text/css">
+    body {
+      margin: 0;
+      background-color: #fff0f5;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+
+    #main {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    canvas {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    #wrap {
+      text-align: center;
+      padding: 20px;
+    }
+
+    #code {
+      display: none;
+      font-size: 18px;
+      color: #d6336c;
+      margin-top: 20px;
+      line-height: 1.8em;
+    }
+
+    .say {
+      display: block;
+      margin: 8px 0;
+    }
+
+    #clock-box {
+      font-size: 16px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    #error {
+      display: none;
+      text-align: center;
+      background-color: #fdd;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    #start-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    #start-btn:hover {
+      background-color: #e754a3;
+    }
+
+    @media only screen and (max-width: 600px) {
+      #code {
+        font-size: 16px;
+      }
+
+      #start-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+
+  <script type="text/javascript">
+    function playAudio() {
+      var audio = document.getElementById("myAudio");
+      audio.play();
+    }
+
+    function startSurprise() {
+      document.getElementById("start-btn").style.display = "none";
+      playAudio();
+      document.getElementById("code").style.display = "block";
+      if (typeof startHeartAnimation === "function") {
+        startHeartAnimation(); // from animate.js
+      }
+    }
+  </script>
 </head>
+
 <body>
-    <div id="main">
-        <div id="error">
-            This browser is not supported. Please use <a href="https://www.google.com/chrome/">Chrome</a> or <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>.
-        </div>
-        <audio id="myAudio">
-            <source src="./file/aud.mp3" type="audio/mpeg" />
-        </audio>
-        <div id="wrap">
-            <div id="text">
-                <div id="code">
-                    <span class="say">My beautiful wife 💞</span>
-                    <span class="say">Happy Birthday 🎈</span>
-                    <span class="say">May Allah bless you 🍀</span>
-                    <span class="say">And give u many happiness 💕</span>
-                    <span class="say">I loved you ❤️</span>
-                    <span class="say">And I will always love u 🥺 ❤️</span>
-                    <span class="say">Hope u have a great day today ❤️😘</span>
-                </div>
-            </div>
-            <div id="clock-box">
-                <span id="clock">577 days 0 hours 0 minutes 0 seconds</span>
-            </div>
-            <canvas id="canvas" width="1100" height="680"></canvas>
-        </div>
+  <div id="main">
+    <div id="error">
+      This browser is not supported. Please use 
+      <a href="https://www.google.com/chrome/">Chrome</a> or 
+      <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>.
     </div>
-    <script type="text/javascript" src="./file/animate.js"></script>
+
+    <audio id="myAudio">
+      <source src="./file/aud.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div id="wrap">
+      <button id="start-btn" onclick="startSurprise()">🎁 See Surprise</button>
+
+      <div id="text">
+        <div id="code">
+          <span class="say">My beautiful wife 💞</span>
+          <span class="say">Happy Birthday 🎈</span>
+          <span class="say">May Allah bless you 🍀</span>
+          <span class="say">And give you many happiness 💕</span>
+          <span class="say">I love you ❤️</span>
+          <span class="say">And I will always love you 🥺 ❤️</span>
+          <span class="say">Hope you have a great day today ❤️😘</span>
+        </div>
+      </div>
+
+      <div id="clock-box">
+        <span id="clock">577 days 0 hours 0 minutes 0 seconds</span>
+      </div>
+
+      <canvas id="canvas" width="1100" height="680"></canvas>
+    </div>
+  </div>
+
+  <!-- Animation logic -->
+  <script src="./file/animate.js" type="text/javascript"></script>
 </body>
 </html>
